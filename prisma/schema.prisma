@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Department {
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(80)
+
+  employees Employee[]
+
+  @@map("departments")
+}
+
+model Employee {
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(20)
+  surname      String @db.VarChar(20)
+  departmentId Int    @map("department_id")
+
+  department Department @relation(fields: [departmentId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  statements Statement[]
+  donations  Donation[]
+
+  @@map("employees")
+}
+
+model Statement {
+  id         Int      @id @default(autoincrement())
+  date       DateTime @db.Date
+  amount     Int
+  employeeId Int      @map("employee_id")
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("statements")
+}
+
+model Donation {
+  id         Int      @id @default(autoincrement())
+  date       DateTime @db.Date
+  amount     Int
+  employeeId Int      @map("employee_id")
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("donations")
+}
+
+model Rate {
+  date  DateTime @db.Date
+  sign  String   @db.Char(3)
+  value Decimal  @db.Decimal(20, 16)
+
+  @@id([date, sign])
+  @@map("rates")
+}
