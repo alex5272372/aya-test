@@ -1,3 +1,11 @@
+## Prerequisites
+- Git installed on your machine
+- Node.js installed on your machine
+- a PostgreSQL database server running
+
+## Getting Started
+
+
 ## Task and questions
 The system should read files from a folder, parse them, and update a database upon startup. A parser needs to be developed, and a database with relational connections needs to be designed. Additionally, multiple HTTP APIs need to be provided to return query results.
 
@@ -20,14 +28,6 @@ To allow file import via a web interface, the system needs to have a file upload
 
 4. How would the queries change if imported data could be considered only for the previous month/year?
 If imported data can only be considered for the previous month/year, the queries need to be modified to filter the data based on the relevant time period before performing the calculations. For example, in the first query, the average monthly salary should be calculated only for the previous 6 months.
-
-## Prerequisites
-- Git installed on your machine
-- Node.js installed on your machine
-- a PostgreSQL database server running
-
-## Getting Started
-
 
 ## Learn more about Next.js
 To learn more about Next.js, take a look at the following resources:
