@@ -1,0 +1,42 @@
+{
+  "v1_0": {
+    "E-List": {
+      "Employee": {
+        "id": "number",
+        "name": "string",
+        "surname": "string",
+        "Department": {
+          "id": "number",
+          "name": "string"
+        },
+        "Salary": {
+          "Statement": {
+            "id": "number",
+            "amount": "money",
+            "date": "date"
+          }
+        },
+        "Donation": {
+          "id": "number",
+          "date": "date",
+          "amount": "money"
+        }
+      }
+    },
+    "Rates": {
+      "Rate": {
+        "date": "date",
+        "sign": "string",
+        "value": "decimal"
+      }
+    }
+  },
+  "v1_1": {
+    "E-List": {
+      "Department": {
+        "id": "number",
+        "name": "string"
+      }
+    }
+  }
+}

@@ -4,6 +4,22 @@
 - a PostgreSQL database server running
 
 ## Getting Started
+1. Clone repository: `git clone https://github.com/alex5272372/aya-test.git`
+2. Change directory: `cd aya-test`
+3. Install dependencies: `npm install`
+4. Create database: `psql "CREATE DATABASE mydb;"`
+5. Create environment file: `cp .env.sample .env`
+6. Change environment variable: `DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"`
+7. Create and fill tables: `npx prisma migrate reset -f`
+8. Build application: `npm run build`
+9. Start application: `npm start`
+10. Open application: http://localhost:3000
+
+## Development
+To change file versions, change the file `./prisma/data/versions.json`
+Reformatted file example `./prisma/data/v1_1_example.txt`
+
+## User guide
 
 
 ## Task and questions
