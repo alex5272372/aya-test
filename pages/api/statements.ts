@@ -6,8 +6,13 @@ const prisma = new PrismaClient()
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Statement[]>
+  res: NextApiResponse
 ) {
-  const data = await prisma.statement.findMany()
+  const data = await prisma.statement.findMany({ select: {
+    id: true,
+    date: true,
+    amount: true,
+    employee: { select: { id: true, name: true, surname: true }}
+  }})
   res.status(200).json(data)
 }

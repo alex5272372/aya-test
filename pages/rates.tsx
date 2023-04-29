@@ -20,10 +20,16 @@ const Rates: NextPage = () => {
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No data</p>
 
+  const columns = [
+    { name: 'date', type: 'date', text: 'Date' },
+    { name: 'sign', type: 'string', text: 'Sign' },
+    { name: 'value', type: 'number', text: 'Value' }
+  ]
+
   return (
     <main>
-      <Navbar />
-      <Grid columns={['date', 'sign', 'value']} data={data}/>
+      <Navbar active='rates'/>
+      <Grid columns={columns} data={data}/>
     </main>
   )
 }

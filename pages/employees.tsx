@@ -12,7 +12,8 @@ const Employees: NextPage = () => {
     fetch('/api/employees')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
+        setData(data.map((row: any) =>
+          ({ ...row, department: `${row.department.name} (${row.department.id})` })))
         setLoading(false)
       })
   }, [])
@@ -20,10 +21,17 @@ const Employees: NextPage = () => {
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No data</p>
 
+  const columns = [
+    { name: 'id', type: 'number', text: 'ID' },
+    { name: 'name', type: 'string', text: 'Name' },
+    { name: 'surname', type: 'string', text: 'Surname' },
+    { name: 'department', type: 'string', text: 'Department' }
+  ]
+
   return (
     <main>
-      <Navbar />
-      <Grid columns={['id', 'name', 'surname', 'departmentId']} data={data}/>
+      <Navbar active='employees'/>
+      <Grid columns={columns} data={data}/>
     </main>
   )
 }

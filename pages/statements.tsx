@@ -12,7 +12,8 @@ const Statements: NextPage = () => {
     fetch('/api/statements')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
+        setData(data.map((row: any) =>
+          ({ ...row, employee: `${row.employee.name} ${row.employee.surname} (${row.employee.id})` })))
         setLoading(false)
       })
   }, [])
@@ -20,10 +21,17 @@ const Statements: NextPage = () => {
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No data</p>
 
+  const columns = [
+    { name: 'id', type: 'number', text: 'ID' },
+    { name: 'date', type: 'date', text: 'Date' },
+    { name: 'amount', type: 'money', text: 'Amount' },
+    { name: 'employee', type: 'string', text: 'Employee' }
+  ]
+
   return (
     <main>
-      <Navbar />
-      <Grid columns={['id', 'date', 'amount', 'employeeId']} data={data}/>
+      <Navbar active='statements'/>
+      <Grid columns={columns} data={data}/>
     </main>
   )
 }

@@ -20,10 +20,15 @@ const Departments: NextPage = () => {
   if (isLoading) return <p>Loading...</p>
   if (!data) return <p>No data</p>
 
+  const columns = [
+    { name: 'id', type: 'number', text: 'ID' },
+    { name: 'name', type: 'string', text: 'Name' }
+  ]
+
   return (
     <main>
-      <Navbar />
-      <Grid columns={['id', 'name']} data={data}/>
+      <Navbar active='departments'/>
+      <Grid columns={columns} data={data}/>
     </main>
   )
 }
