@@ -21,9 +21,9 @@ const Rates: NextPage = () => {
   if (!data) return <p>No data</p>
 
   const columns = [
-    { name: 'date', type: 'date', text: 'Date' },
-    { name: 'sign', type: 'string', text: 'Sign' },
-    { name: 'value', type: 'number', text: 'Value' }
+    { name: 'date', type: 'date', title: 'Date' },
+    { name: 'sign', type: 'string', title: 'Sign' },
+    { name: 'value', type: 'number', title: 'Value' }
   ]
 
   return (

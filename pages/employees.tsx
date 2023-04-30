@@ -22,10 +22,10 @@ const Employees: NextPage = () => {
   if (!data) return <p>No data</p>
 
   const columns = [
-    { name: 'id', type: 'number', text: 'ID' },
-    { name: 'name', type: 'string', text: 'Name' },
-    { name: 'surname', type: 'string', text: 'Surname' },
-    { name: 'department', type: 'string', text: 'Department' }
+    { name: 'id', type: 'number', title: 'ID' },
+    { name: 'name', type: 'string', title: 'Name' },
+    { name: 'surname', type: 'string', title: 'Surname' },
+    { name: 'department', type: 'string', title: 'Department' }
   ]
 
   return (

@@ -22,10 +22,10 @@ const Statements: NextPage = () => {
   if (!data) return <p>No data</p>
 
   const columns = [
-    { name: 'id', type: 'number', text: 'ID' },
-    { name: 'date', type: 'date', text: 'Date' },
-    { name: 'amount', type: 'money', text: 'Amount' },
-    { name: 'employee', type: 'string', text: 'Employee' }
+    { name: 'id', type: 'number', title: 'ID' },
+    { name: 'date', type: 'date', title: 'Date' },
+    { name: 'amount', type: 'money', title: 'Amount' },
+    { name: 'employee', type: 'string', title: 'Employee' }
   ]
 
   return (

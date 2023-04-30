@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Grid from '../components/Grid'
 
-const Departments: NextPage = () => {
+const SalaryDiff: NextPage = () => {
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
     setLoading(true)
-    fetch('/api/departments')
+    fetch('/api/salary-diff')
       .then((res) => res.json())
       .then((data) => {
-        setData(data)
+        setData(data.map((row: any) =>
+          ({ ...row, employee: `${row.employee.name} ${row.employee.surname} (${row.employee.id})` })))
         setLoading(false)
       })
   }, [])
@@ -22,15 +23,17 @@ const Departments: NextPage = () => {
 
   const columns = [
     { name: 'id', type: 'number', title: 'ID' },
-    { name: 'name', type: 'string', title: 'Name' }
+    { name: 'date', type: 'date', title: 'Date' },
+    { name: 'amount', type: 'money', title: 'Amount' },
+    { name: 'employee', type: 'string', title: 'Employee' }
   ]
 
   return (
     <main>
-      <Navbar active='departments'/>
+      <Navbar active='salary-diff'/>
       <Grid columns={columns} data={data}/>
     </main>
   )
 }
 
-export default Departments
+export default SalaryDiff
