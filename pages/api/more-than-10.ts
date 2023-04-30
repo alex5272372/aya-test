@@ -47,7 +47,7 @@ export default async function handler(
       GROUP BY employee_id) AS sy
     ON e.id = sy.employee_id
     WHERE d.amount > sm.amount / sm.count / 10
-    ORDER BY sy.amount / sy.count;    
+    ORDER BY sy.amount / sy.count;
   `
   res.status(200).json(data)
 }
