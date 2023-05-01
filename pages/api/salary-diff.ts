@@ -62,7 +62,7 @@ export default async function handler(
       ORDER BY ed.max_annual - ed.min_annual DESC, d.id
     ) AS res
     WHERE res.row_num <= 3;`
-  await prisma.$executeRaw`DROP TABLE tmp_emp;`
 
+  await prisma.$executeRaw`DROP TABLE tmp_emp;`
   res.status(200).json(data)
 }

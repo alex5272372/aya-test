@@ -13,7 +13,10 @@ const MoreThan100: NextPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setData(data.map((row: any) =>
-          ({ ...row, employee: `${row.employee.name} ${row.employee.surname} (${row.employee.id})` })))
+          ({ ...row,
+            employee: `${row.name} ${row.surname} (${row.id})`,
+            department: `${row.d_name} (${row.d_id})`
+          })))
         setLoading(false)
       })
   }, [])
@@ -22,10 +25,12 @@ const MoreThan100: NextPage = () => {
   if (!data) return <p>No data</p>
 
   const columns = [
-    { name: 'id', type: 'number', title: 'ID' },
-    { name: 'date', type: 'date', title: 'Date' },
-    { name: 'amount', type: 'money', title: 'Amount' },
-    { name: 'employee', type: 'string', title: 'Employee' }
+    { name: 'num', type: 'number', title: 'Number' },
+    { name: 'employee', type: 'string', title: 'Employee' },
+    { name: 'donation', type: 'money', title: 'Donation' },
+    { name: 'reward', type: 'money', title: 'Reward' },
+    { name: 'department', type: 'string', title: 'Department' },
+    { name: 'don_person', type: 'money', title: 'Don person' }
   ]
 
   return (
