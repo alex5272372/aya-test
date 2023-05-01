@@ -16,11 +16,11 @@
 10. Open application: http://localhost:3000
 
 ## Development
-To change file versions, change the file `./prisma/data/versions.json`
+To change file versions, change the file `./helpers/versions.json`
 Reformatted file example `./prisma/data/v1_1_example.txt`
 
 ## User guide
-
+To return to the home page, click the logo.
 
 ## Task and questions
 The system should read files from a folder, parse them, and update a database upon startup. A parser needs to be developed, and a database with relational connections needs to be designed. Additionally, multiple HTTP APIs need to be provided to return query results.
