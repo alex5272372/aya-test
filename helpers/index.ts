@@ -49,9 +49,11 @@ const parse = (
   return result
 }
 
-const getProp = (res: any[], ...names: string[]): any => names.length === 1
-  ? res.filter((el: any) => el[0] === names[0]).map((el: any) => el[1])
-  : getProp(getProp(res, names[0])[0], ...names.slice(1))
+const getProp = (res: any[], ...names: string[]): any[] => {
+  const newRes = res.filter((el: any) => el[0] === names[0]).map((el: any) => el[1])
+  if (!newRes.length) return []
+  return names.length === 1 ? newRes : getProp(newRes[0], ...names.slice(1))
+}
 
 const getOwnProp = (res: any[]): any =>
   res.reduce((acc: any, cur: any) => {
@@ -92,9 +94,10 @@ const parse_v1_0 = async (rows: { rowNum: number, indent: number, text: string }
   const result: any = parse(rows, versions.v1_0)
   const employees = getProp(result, 'E-List', 'Employee')
 
-  const rates = getProp(result, 'Rates', 'Rate')
+  let rates = getProp(result, 'Rates', 'Rate')
     .map((el: any) => getOwnProp(el))
     .sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
+  if (!rates.length) rates = await prisma.rate.findMany({orderBy: { date: 'desc' }})
 
   const departments = employees.reduce((acc: any, cur: any) => {
     const dep = getOwnProp(getProp(cur, 'Department')[0])
